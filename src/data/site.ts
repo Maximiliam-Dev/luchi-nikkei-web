@@ -1,0 +1,46 @@
+export const site = {
+  name: "Luchi Nikkei",
+  shortName: "Luchi",
+  tagline: "Burger · Sushi",
+  description:
+    "Sushi nikkei, burgers y churrascos en Iquique. Pide por WhatsApp. Juan Martínez 1946.",
+  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://amazona-sushi-nikkei.vercel.app",
+  locale: "es_CL",
+  phoneDisplay: "+56 9 5424 8389",
+  phoneTel: "+56954248389",
+  whatsapp: "56954248389",
+  address: {
+    street: "Juan Martínez 1946",
+    city: "Iquique",
+    region: "Tarapacá",
+    country: "Chile",
+    countryCode: "CL",
+    full: "Juan Martínez 1946, 1101893 Iquique, Tarapacá",
+  },
+  instagram: "https://www.instagram.com/luchiiquique/",
+  instagramHandle: "@luchiiquique",
+  facebook: "https://www.facebook.com/LuchiIquique/",
+  mapsQuery: "Juan Martínez 1946, Iquique, Tarapacá, Chile",
+  hours: {
+    label:
+      "Lunes a sábado 17:00 – 00:00. Domingo 00:00 – 12:00 y 17:00 – 00:00.",
+    note: "Los horarios pueden variar",
+    weekdays: { open: "17:00", close: "00:00" },
+    sundayMorning: { open: "00:00", close: "12:00" },
+    sundayEvening: { open: "17:00", close: "00:00" },
+    table: [
+      { day: "Lunes", hours: "17:00–00:00" },
+      { day: "Martes", hours: "17:00–00:00" },
+      { day: "Miércoles", hours: "17:00–00:00" },
+      { day: "Jueves", hours: "17:00–00:00" },
+      { day: "Viernes", hours: "17:00–00:00" },
+      { day: "Sábado", hours: "17:00–00:00" },
+      { day: "Domingo", hours: "00:00–12:00 y 17:00–00:00" },
+    ],
+  },
+  ratings: {
+    google: { score: 4.5, count: 14 },
+    facebook: { score: 5, count: 1 },
+  },
+  priceRange: "$$",
+} as const;
