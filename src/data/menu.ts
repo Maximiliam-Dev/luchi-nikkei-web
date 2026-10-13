@@ -238,7 +238,7 @@ export const MENU: MenuItem[] = [
 ];
 
 export function getMenuByCategory(categoria: FiltroMenu | Categoria): MenuItem[] {
-  if (categoria === "Recomendados") {
+  if ((categoria as string) === "Recomendados") {
     return MENU;
   }
   return MENU.filter((item) => item.categoria === categoria);
