@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import { ProductCard } from "@/components/ProductCard";
 import { FILTROS_MENU, filterMenu } from "@/types/menu";
 import type { FiltroMenu, MenuItem } from "@/types/menu";
@@ -95,12 +95,30 @@ function NotaPromos() {
 
 export function MenuSection({ items }: { items: MenuItem[] }) {
   const [tab, setTab] = useState<FiltroMenu>("Menú Completo");
+  const sectionRef = useRef<HTMLElement>(null);
   const visible = useMemo(() => filterMenu(items, tab), [items, tab]);
   const groups = buildGroups(visible);
   const hasPromos = groups.some((group) => group.match === "promos de sushi");
 
+  const selectTab = (filtro: FiltroMenu) => {
+    setTab(filtro);
+    requestAnimationFrame(() => {
+      const reduceMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)",
+      ).matches;
+      sectionRef.current?.scrollIntoView({
+        behavior: reduceMotion ? "auto" : "smooth",
+        block: "start",
+      });
+    });
+  };
+
   return (
-    <section id="menu" className="scroll-mt-24 bg-[#0A0A0A] px-4 py-16 text-white sm:py-20">
+    <section
+      ref={sectionRef}
+      id="menu"
+      className="scroll-mt-24 bg-[#0A0A0A] px-4 py-16 text-white sm:py-20"
+    >
       <div className="mx-auto max-w-6xl">
         <h2
           className={`font-display text-4xl font-extrabold italic uppercase tracking-tight sm:text-5xl ${brandText}`}
@@ -136,7 +154,7 @@ export function MenuSection({ items }: { items: MenuItem[] }) {
                       type="button"
                       role="tab"
                       aria-selected={selected}
-                      onClick={() => setTab(filtro)}
+                      onClick={() => selectTab(filtro)}
                       className={`min-h-11 shrink-0 rounded-full border px-4 py-2 text-sm font-semibold transition duration-200 active:scale-95 ${focusRing} ${
                         selected
                           ? "border-[#FF1FA8] bg-[#FF1FA8] text-black shadow-[0_0_20px_rgba(255,31,168,0.35)]"

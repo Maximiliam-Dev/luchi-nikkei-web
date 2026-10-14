@@ -4,6 +4,7 @@ import { Footer } from "@/components/Footer";
 import { Hero } from "@/components/Hero";
 import { MenuSection } from "@/components/MenuSection";
 import { Navbar } from "@/components/Navbar";
+import { Reveal } from "@/components/Reveal";
 import { ReviewsSection } from "@/components/ReviewsSection";
 import { getMenu } from "@/lib/menu";
 
@@ -18,11 +19,19 @@ export default async function Home() {
       <main id="contenido">
         <Hero />
         <MenuSection items={items} />
-        <AboutSection />
-        <ReviewsSection />
-        <ContactSection />
+        <Reveal>
+          <AboutSection />
+        </Reveal>
+        <Reveal>
+          <ReviewsSection />
+        </Reveal>
+        <Reveal>
+          <ContactSection />
+        </Reveal>
       </main>
-      <Footer />
+      <Reveal>
+        <Footer />
+      </Reveal>
     </>
   );
 }
