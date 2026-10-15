@@ -20,7 +20,8 @@ export const getMenu = cache(async (): Promise<MenuItem[]> => {
     .select(
       "id, created_at, nombre, descripcion, precio, imagen, categoria, es_mas_pedido",
     )
-    .order("created_at", { ascending: true });
+    .order("orden", { ascending: true, nullsFirst: false })
+    .order("id", { ascending: true });
 
   if (error) {
     console.error("No se pudo leer el menú:", error.message);
